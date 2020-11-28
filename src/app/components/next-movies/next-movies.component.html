@@ -25,4 +25,5 @@
                       @filtersApplied="filtersApplied"></filter-panel> -->
       </div>
       <div class="footer"></div>
+      <app-movie-details *ngIf="movieGotClicked" [id]="selectedMovie.id" (goBackClicked)="onGoBackClicked($event)"></app-movie-details>
     </div>

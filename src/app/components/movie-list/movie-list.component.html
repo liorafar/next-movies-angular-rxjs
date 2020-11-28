@@ -1,9 +1,8 @@
-<div class="container">
+<div class="movie-list-container">
     <app-movie 
         *ngFor="let movie of movies"
         [title]="movie.title"
         [imagePath]="movie.image"
-        (click)="movieClicked(movie)"
-        class="grow">
+        (click)="movieClicked(movie)">
     </app-movie>
 </div>

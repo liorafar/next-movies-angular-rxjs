@@ -39,4 +39,9 @@ export class MovieService {
  
 
   }
+
+  getMovieById(id:string): Observable<Movie> {
+    console.log("get by id from: ", `${this.moviesUrl}/${id}`);
+    return this.http.get<Movie>(`${this.moviesUrl}/${id}`);
+  }
 }

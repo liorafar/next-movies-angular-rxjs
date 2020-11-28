@@ -10,6 +10,8 @@ import { MovieService } from '../../services/movie.service'
 export class NextMoviesComponent implements OnInit {
 
   movies:Movie[];
+  movieGotClicked:boolean = false;
+  selectedMovie:Movie;
   constructor(private movieService:MovieService) { }
 
   ngOnInit(): void {
@@ -18,6 +20,12 @@ export class NextMoviesComponent implements OnInit {
 
   onClickMovie(movie:any): void {
     console.log("recieved movie: ", movie);
+    this.movieGotClicked = true;
+    this.selectedMovie = movie;
+  }
+
+  onGoBackClicked(): void {
+    this.movieGotClicked = false;
   }
 
 }
