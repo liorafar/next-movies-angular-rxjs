@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
-import { MovieService } from '../../services/movie.service'
 
 @Component({
   selector: 'app-movie-list',
@@ -9,16 +8,16 @@ import { MovieService } from '../../services/movie.service'
 })
 export class MovieListComponent implements OnInit {
 
-  movies:Movie[];
+  @Input() movies:Movie[];
+  @Output() clicked: EventEmitter<Movie> = new EventEmitter();
   
-  constructor(private movieService:MovieService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    // this.movieService.getMovies().subscribe(items => this.movies = items);
-    this.movieService.getMovies().subscribe({
-      next: result => this.movies = result,
-      complete: () => console.log('done')
-     });
+  }
+
+  movieClicked(movie:Movie): void {
+    this.clicked.emit(movie);
   }
 
 }

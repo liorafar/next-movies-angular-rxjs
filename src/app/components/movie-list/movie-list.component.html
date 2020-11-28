@@ -1,3 +1,9 @@
-<div *ngFor="let movie of movies">
-    {{ movie.title }}
+<div class="container">
+    <app-movie 
+        *ngFor="let movie of movies"
+        [title]="movie.title"
+        [imagePath]="movie.image"
+        (click)="movieClicked(movie)"
+        class="grow">
+    </app-movie>
 </div>
