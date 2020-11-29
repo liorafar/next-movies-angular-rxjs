@@ -44,4 +44,19 @@ export class MovieService {
     console.log("get by id from: ", `${this.moviesUrl}/${id}`);
     return this.http.get<Movie>(`${this.moviesUrl}/${id}`);
   }
+
+  async getMoviesByCriteria(filters:any[]): Promise<Movie[]>{
+    var moviesRes;
+    const p = this.getMovies().toPromise();
+    await p.then((val) => {
+      moviesRes = val;
+    });
+
+    let filteredRes:Movie[] = moviesRes;
+    filters.forEach((filterFunc) => {
+      filteredRes = filteredRes.filter(filterFunc);
+    });
+    console.log("filteredRes: ", filteredRes);
+    return filteredRes;
+  }
 }

@@ -8,6 +8,7 @@ import { NextMoviesComponent } from './components/next-movies/next-movies.compon
 import { MovieComponent } from './components/movie/movie.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { GenericButtonComponent } from './components/basicComponents/generic-button/generic-button.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
     NextMoviesComponent,
     MovieComponent,
     MovieListComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    GenericButtonComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,13 +3,10 @@
       <div class="header">
         <h1 class="title">Next Movies</h1>
             <!-- <generic-button class="button-big" @clicked="advancedClicked" :label="'Advanced'"></generic-button> -->
-           <!-- <autocomplete
-              :search="searchByText"
-              :debounceTime="1000"
-              class="search-movie"
-              placeholder="Search title or description..."
-              aria-label="Search title or description..."
-          ></autocomplete> -->
+            <div id="autocomplete" class="autocomplete">
+                <input class="autocomplete-input" />
+                <ul class="autocomplete-result-list"></ul>
+            </div>
       </div>
       <div class="left-panel"></div>
       <div class="movie-list" >
