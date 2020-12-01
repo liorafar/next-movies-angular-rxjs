@@ -17,7 +17,6 @@ export class MovieDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.getMovieById(this.id).subscribe(item => {
-      console.log("movie is: ", item[0]);
       this.movie = item[0]
     });
   }

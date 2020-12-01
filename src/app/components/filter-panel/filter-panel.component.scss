@@ -1,0 +1,44 @@
+@mixin buttonSmall {
+    background-color: rgb(17, 153, 250);
+    color:white;
+    height: 30px;
+    width: 80px;
+    border-radius: 7px;
+    
+ }
+
+ p {
+     position: relative;
+     left: 5px;
+     font-family: Lato;
+ }
+ 
+ .filterContainer {
+     width: 230px;
+     // height: 600px; // height for more filters
+     height: 200px;
+     padding: 20px;
+     background-color: white;
+     border-radius: 7px 0 0 7px;
+
+     .closePanel{
+         position: absolute;
+         right: 10px;
+         top: 10px;
+         cursor: pointer;
+     }
+
+     .applyButton{
+         @include buttonSmall;
+         position: absolute;
+         bottom: 10px;
+         left: 10px;
+     }
+
+     .clearButton{
+         @include buttonSmall;
+         position: absolute;
+         bottom: 10px;
+         left: 95px;
+     }
+ }

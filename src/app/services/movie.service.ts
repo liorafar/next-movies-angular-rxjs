@@ -46,7 +46,7 @@ export class MovieService {
   }
 
   async getMoviesByCriteria(filters:any[]): Promise<Movie[]>{
-    var moviesRes;
+    let moviesRes;
     const p = this.getMovies().toPromise();
     await p.then((val) => {
       moviesRes = val;

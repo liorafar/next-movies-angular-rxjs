@@ -2,9 +2,11 @@
     <div class="page-layout">
       <div class="header">
         <h1 class="title">Next Movies</h1>
-            <!-- <generic-button class="button-big" @clicked="advancedClicked" :label="'Advanced'"></generic-button> -->
-            <div id="autocomplete" class="autocomplete">
-                <input class="autocomplete-input" />
+            <app-generic-button class="button-big" (clicked)="advancedClicked()" [label]="'Advanced'"></app-generic-button>
+            <div id="autocomplete" class="autocomplete search-movie">
+                <input class="autocomplete-input"
+                       placeholder="Search title or description..."
+                       aria-label="Search title or description..." />
                 <ul class="autocomplete-result-list"></ul>
             </div>
       </div>
@@ -17,9 +19,10 @@
         </app-movie-list>
       </div>
       <div class="right-panel">
-        <!-- <filter-panel v-show="showAdvancedFilter"
-                      @clicked="closeAdvancedPanel"
-                      @filtersApplied="filtersApplied"></filter-panel> -->
+        <app-filter-panel [hidden]="!showAdvancedFilter"
+                      (clicked)="closeAdvancedPanel()"
+                      (filtersApplied)="filtersApplied()">
+        </app-filter-panel>
       </div>
       <div class="footer"></div>
       <app-movie-details *ngIf="movieGotClicked" [id]="selectedMovie.id" (goBackClicked)="onGoBackClicked($event)"></app-movie-details>

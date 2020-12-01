@@ -10,9 +10,9 @@
                 </div>
                 <h2 class="movie-name">{{movie.title}}</h2>
                 <!-- To do: add rating stars -->
-                <h3>{{ movie.runtime }} | {{ movie.rating }} | {{ movie.rating }}</h3>
+                <h3>{{ movie.released }} | {{ movie.runtime }} | {{ movie.rating }}</h3>
                 <p class="synopsis">{{movie.synopsis}}</p>
-                <a target="_blank" :href="`https://www.imdb.com/title/${movie.imdbid}/`">IMDB</a>
+                <!-- <a target="_blank" [href]="`https://www.imdb.com/title/${movie.imdbid}/`">IMDB</a> -->
             </div>
         </div>
     </div>

@@ -9,6 +9,7 @@ import { MovieComponent } from './components/movie/movie.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { GenericButtonComponent } from './components/basicComponents/generic-button/generic-button.component';
+import { FilterPanelComponent } from './components/filter-panel/filter-panel.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { GenericButtonComponent } from './components/basicComponents/generic-but
     MovieListComponent,
     MovieDetailsComponent,
     GenericButtonComponent,
+    FilterPanelComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,4 +8,5 @@ export interface Movie{
     synopsis:string;
     runtime:string;
     imdbid:string
+    released:string
 }

@@ -13,18 +13,36 @@ export class NextMoviesComponent implements OnInit {
   movies:Movie[];
   movieGotClicked:boolean = false;
   selectedMovie:Movie;
+  showAdvancedFilter:boolean = false;
+  searchTextFilter:Function;
+  runtimeFilter:Function;
+  ratingFilter:Function;
   constructor(private movieService:MovieService) { }
 
   ngOnInit(): void {
     this.movieService.getMovies().subscribe(items => this.movies = items);
+    this.createFilters();
     this.initSearchComponent();
   }
 
+  createFilters():any {
+    this.searchTextFilter = (movie, searchText) =>
+                              movie.title.toLowerCase()
+                              .includes(searchText.toLowerCase())
+                              ||
+                              movie.synopsis.toLowerCase()
+                              .includes(searchText.toLowerCase())
+  }
+
   initSearchComponent() {
-    // const autoCompleteElem = document.getElementById("autocomplete");
     const search = searchText => {
-      console.log("input: ", searchText);
-      const filters = [movie => movie.title.toLowerCase().includes(searchText.toLowerCase())];
+      const searchTextFilter = movie =>
+                                movie.title.toLowerCase()
+                                .includes(searchText.toLowerCase())
+                                ||
+                                movie.synopsis.toLowerCase()
+                                .includes(searchText.toLowerCase())
+      const filters = [searchTextFilter];
       this.movieService.getMoviesByCriteria(filters).then(filteredRes => this.movies = filteredRes);;
       return [];
     }
@@ -37,13 +55,24 @@ export class NextMoviesComponent implements OnInit {
   }
 
   onClickMovie(movie:any): void {
-    console.log("recieved movie: ", movie);
     this.movieGotClicked = true;
     this.selectedMovie = movie;
   }
 
   onGoBackClicked(): void {
     this.movieGotClicked = false;
+  }
+
+  closeAdvancedPanel() {
+    this.showAdvancedFilter = false;
+  }
+
+  advancedClicked():void{
+    this.showAdvancedFilter = !this.showAdvancedFilter;
+  }
+
+  filtersApplied() {
+
   }
 
 }
