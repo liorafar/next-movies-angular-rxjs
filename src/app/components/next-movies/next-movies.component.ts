@@ -18,14 +18,16 @@ export class NextMoviesComponent implements OnInit {
   searchText:string = "";
   runtime:number = 240;
   rating:number = 10;
+  pageSize:number = 24;
+
   constructor(private movieService:MovieService) { }
 
   ngOnInit(): void {
-    this.movieService.getMovies().subscribe(items => this.movies = items);
     this.initSearchComponent();
+    this.getMoviesByCriterias();
   }
 
-  initSearchComponent() {
+  initSearchComponent(): void {
     const search = searchText => {
       if (this.searchText === searchText) return [];
       this.searchText = searchText;
@@ -40,7 +42,7 @@ export class NextMoviesComponent implements OnInit {
      })
   }
 
-  advancedFiltersApplied(data) {
+  advancedFiltersApplied(data): void {
     this.runtime = data.runtime;
     this.rating = data.rating;
     this.getMoviesByCriterias();
@@ -77,7 +79,13 @@ export class NextMoviesComponent implements OnInit {
 
   getMoviesByCriterias():void {
     const filters = this.getAllFilters(this.searchText, this.runtime, this.rating);
-    this.movieService.getMoviesByCriteria(filters).then(filteredRes => this.movies = filteredRes);
+    this.movieService.getMoviesByCriteria(filters, this.pageSize).then(filteredRes => this.movies = filteredRes);
+  }
+
+  onScroll(): void {
+    console.log("onScroll");
+    this.pageSize += 24;
+    this.getMoviesByCriterias();
   }
 
   onClickMovie(movie:any): void {
@@ -89,7 +97,7 @@ export class NextMoviesComponent implements OnInit {
     this.movieGotClicked = false;
   }
 
-  closeAdvancedPanel() {
+  closeAdvancedPanel(): void {
     this.showAdvancedFilter = false;
   }
 

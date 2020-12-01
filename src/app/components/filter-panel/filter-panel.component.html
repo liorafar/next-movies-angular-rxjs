@@ -4,9 +4,9 @@
     <p>Rating: </p>
     <!-- <vue-slider v-model="rating" :min=0 :max=10></vue-slider> -->
     <!-- To Do: change the minutes to hours and minutes format -->
-    <input type="range" id="ratingEl" name="volume" min="0" max="10">
+    <input type="range" id="ratingEl" name="volume" min="0" max="10" value="10">
     <p>Movie Length (minutes): </p>
-    <input type="range" id="runtimeEl" name="volume" min="0" max="240">
+    <input type="range" id="runtimeEl" name="volume" min="0" max="240" value="240">
     <!-- <vue-slider v-model="runtime" :min=0 :max=240></vue-slider> -->
     <!-- <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider> -->
     <app-generic-button class="applyButton" (clicked)="applyFilters()" [label]="'Apply'"></app-generic-button>

@@ -41,11 +41,11 @@ export class MovieService {
   }
 
   getMovieById(id:string): Observable<Movie> {
-    console.log("get by id from: ", `${this.moviesUrl}/${id}`);
     return this.http.get<Movie>(`${this.moviesUrl}/${id}`);
   }
 
-  async getMoviesByCriteria(filters:any[]): Promise<Movie[]>{
+  async getMoviesByCriteria(filters:any[], pageSize:number): Promise<Movie[]>{
+    console.log("pageSize: ", pageSize);
     let moviesRes;
     const p = this.getMovies().toPromise();
     await p.then((val) => {
@@ -56,7 +56,6 @@ export class MovieService {
     filters.forEach((filterFunc) => {
       filteredRes = filteredRes.filter(filterFunc);
     });
-    console.log("filteredRes: ", filteredRes);
-    return filteredRes;
+    return filteredRes.slice(0, pageSize + 1);
   }
 }

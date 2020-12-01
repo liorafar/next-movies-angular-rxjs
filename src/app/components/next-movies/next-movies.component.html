@@ -11,11 +11,15 @@
             </div>
       </div>
       <div class="left-panel"></div>
+      <div
+          class="search-results"
+          infiniteScroll
+          [infiniteScrollDistance]="1"
+          [infiniteScrollThrottle]="200"
+          (scrolled)="onScroll()">
+      </div>
       <div class="movie-list" >
         <app-movie-list [movies]="movies" (clicked)="onClickMovie($event)">
-                    <!-- v-infinite-scroll="loadMore"
-                    infinite-scroll-disabled="busy"
-                    infinite-scroll-distance="1"> -->
         </app-movie-list>
       </div>
       <div class="right-panel">

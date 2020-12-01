@@ -1,5 +1,5 @@
 <div class="overlay">
-    <div class="movie-details-window">
+    <div *ngIf="loadingImage" class="movie-details-window">
         <div class="movie-details-container">
             <div class="image-block">
                 <img [src]="movie.largeimage" alt="test image">
@@ -12,7 +12,7 @@
                 <!-- To do: add rating stars -->
                 <h3>{{ movie.released }} | {{ movie.runtime }} | {{ movie.rating }}</h3>
                 <p class="synopsis">{{movie.synopsis}}</p>
-                <!-- <a target="_blank" [href]="`https://www.imdb.com/title/${movie.imdbid}/`">IMDB</a> -->
+                <a target="_blank" href="https://www.imdb.com/title/{{movie.imdbid}}/">IMDB</a>
             </div>
         </div>
     </div>

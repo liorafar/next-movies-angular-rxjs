@@ -10,6 +10,8 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { GenericButtonComponent } from './components/basicComponents/generic-button/generic-button.component';
 import { FilterPanelComponent } from './components/filter-panel/filter-panel.component';
+import { CommonModule } from '@angular/common'; 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,11 @@ import { FilterPanelComponent } from './components/filter-panel/filter-panel.com
     FilterPanelComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

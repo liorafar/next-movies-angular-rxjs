@@ -10,6 +10,7 @@ import { MovieService } from 'src/app/services/movie.service';
 export class MovieDetailsComponent implements OnInit {
 
   movie:Movie;
+  loadingImage:boolean = false;
   @Input() id:string;
   @Output() goBackClicked:EventEmitter<void>= new EventEmitter();
 
@@ -17,6 +18,7 @@ export class MovieDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.getMovieById(this.id).subscribe(item => {
+      this.loadingImage = true;
       this.movie = item[0]
     });
   }
