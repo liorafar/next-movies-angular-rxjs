@@ -21,7 +21,7 @@
       <div class="right-panel">
         <app-filter-panel [hidden]="!showAdvancedFilter"
                       (clicked)="closeAdvancedPanel()"
-                      (filtersApplied)="filtersApplied()">
+                      (filtersApplied)="advancedFiltersApplied($event)">
         </app-filter-panel>
       </div>
       <div class="footer"></div>

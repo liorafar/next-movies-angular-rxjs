@@ -23,6 +23,7 @@ export class FilterPanelComponent implements OnInit {
   // to do: change regular range input to "between" range
   // so we can provide a range of 5-8 for example and not only 0-8
   applyFilters(){
+    console.log("applyFilters");
       const ratingEl: HTMLInputElement = document.getElementById('ratingEl') as HTMLInputElement
       const runtimeEl: HTMLInputElement = document.getElementById('runtimeEl') as HTMLInputElement
       this.rating = parseInt(ratingEl.value);
