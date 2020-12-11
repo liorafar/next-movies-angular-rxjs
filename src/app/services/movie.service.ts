@@ -17,37 +17,18 @@ export class MovieService {
   constructor(private http:HttpClient) { }
 
   getMovies():Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.moviesUrl);
-
-    // rxjs way
-    // return fromFetch(this.moviesUrl).pipe(
-    //                   switchMap(response => {
-    //                       if (response.ok) {
-    //                         // OK return data
-    //                         return response.json();
-    //                       } else {
-    //                         // Server is returning a status requiring the client to try something else.
-    //                         return of({ error: true, message: `Error ${response.status}` });
-    //                       }
-    //                     }),
-    //                     catchError(err => {
-    //                       // Network or other error, handle appropriately
-    //                       console.error(err);
-    //                       return of({ error: true, message: err.message })
-    //                     })
-    //                   );
- 
-
+    //return this.http.get<Movie[]>(this.moviesUrl);
+    return this.fetch(this.moviesUrl);
   }
 
   getMovieById(id:string): Observable<Movie> {
-    return this.http.get<Movie>(`${this.moviesUrl}/${id}`);
+    //return this.http.get<Movie>(`${this.moviesUrl}/${id}`);
+    return this.fetch(`${this.moviesUrl}/${id}`);
   }
 
   async getMoviesByCriteria(filters:any[], pageSize:number): Promise<Movie[]>{
-    console.log("pageSize: ", pageSize);
     let moviesRes;
-    const p = this.getMovies().toPromise();
+    const p = this.getMovies().toPromise(); // we want to await so we change to promise
     await p.then((val) => {
       moviesRes = val;
     });
@@ -57,5 +38,24 @@ export class MovieService {
       filteredRes = filteredRes.filter(filterFunc);
     });
     return filteredRes.slice(0, pageSize + 1);
+  }
+
+  private fetch(url):Observable<any>{
+    return fromFetch(url).pipe(
+      switchMap(response => {
+          if (response.ok) {
+            // OK return data
+            return response.json();
+          } else {
+            // Server is returning a status requiring the client to try something else.
+            return of({ error: true, message: `Error ${response.status}` });
+          }
+        }),
+        catchError(err => {
+          // Network or other error, handle appropriately
+          console.error(err);
+          return of({ error: true, message: err.message })
+        })
+      );
   }
 }
