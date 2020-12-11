@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FiltersDataService } from "../../services/filters-data.service";
+
 
 @Component({
   selector: 'app-filter-panel',
@@ -8,11 +10,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class FilterPanelComponent implements OnInit {
 
   @Output() clicked:EventEmitter<void> = new EventEmitter();
-  @Output() filtersApplied:EventEmitter<any> = new EventEmitter();
 
   rating:number;
   runtime:number;
-  constructor() { }
+  constructor(private filtersDataService:FiltersDataService) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +29,7 @@ export class FilterPanelComponent implements OnInit {
       const runtimeEl: HTMLInputElement = document.getElementById('runtimeEl') as HTMLInputElement
       this.rating = parseInt(ratingEl.value);
       this.runtime = parseInt(runtimeEl.value);
-      this.filtersApplied.emit( { rating: this.rating, runtime: this.runtime });
+      this.filtersDataService.updatedDataSelection({ rating: this.rating, runtime: this.runtime })
   }
   clearFilters(){
     const ratingEl: HTMLInputElement = document.getElementById('ratingEl') as HTMLInputElement
@@ -37,7 +38,7 @@ export class FilterPanelComponent implements OnInit {
     runtimeEl.value = "240";
     this.rating = parseInt(ratingEl.value);
     this.runtime = parseInt(runtimeEl.value);
-    this.filtersApplied.emit( { rating: this.rating, runtime: this.runtime });
+    this.filtersDataService.updatedDataSelection({ rating: this.rating, runtime: this.runtime })
   }
 
 }

@@ -3,6 +3,8 @@ import { Movie } from 'src/app/models/movie';
 import { MovieService } from '../../services/movie.service'
 import Autocomplete from "@trevoreyre/autocomplete-js";
 import { TimeFormatter } from "../../utils/timeFormatter";
+import { FiltersDataService } from "../../services/filters-data.service";
+import { FiltersData } from "../../models/filtersData";
 
 @Component({
   selector: 'app-next-movies',
@@ -20,9 +22,10 @@ export class NextMoviesComponent implements OnInit {
   rating:number = 10;
   pageSize:number = 24;
 
-  constructor(private movieService:MovieService) { }
+  constructor(private movieService:MovieService, private filtersDataService:FiltersDataService) { }
 
   ngOnInit(): void {
+    this.initAdvancedFiltersApplied();
     this.initSearchComponent();
     this.getMoviesByCriterias();
   }
@@ -42,7 +45,13 @@ export class NextMoviesComponent implements OnInit {
      })
   }
 
-  advancedFiltersApplied(data): void {
+  initAdvancedFiltersApplied(){
+    this.filtersDataService.data.subscribe(data => {
+      this.advancedFiltersApplied(data);
+    });
+  }
+
+  advancedFiltersApplied(data:FiltersData): void {
     this.runtime = data.runtime;
     this.rating = data.rating;
     this.getMoviesByCriterias();

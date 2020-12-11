@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Movie } from '../models/movie'
 import { Observable } from 'rxjs';
-//////////////////
 import { of } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap, catchError } from 'rxjs/operators';
-////////////////////
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +11,13 @@ import { switchMap, catchError } from 'rxjs/operators';
 export class MovieService {
   moviesUrl:string = 'http://localhost:3000/movies';
   
-  constructor(private http:HttpClient) { }
+  constructor() { }
 
   getMovies():Observable<Movie[]> {
-    //return this.http.get<Movie[]>(this.moviesUrl);
     return this.fetch(this.moviesUrl);
   }
 
   getMovieById(id:string): Observable<Movie> {
-    //return this.http.get<Movie>(`${this.moviesUrl}/${id}`);
     return this.fetch(`${this.moviesUrl}/${id}`);
   }
 
